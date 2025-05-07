@@ -1,0 +1,12 @@
+#ani = [AA, Aa, aa]
+ani = [30, 17, 21]
+total = ani[0] + ani[1] + ani[2]
+
+AAxAA = (ani[0]/total) * ((ani[0]-1)/(total - 1))
+AAxAa = ((ani[0]/total) * (ani[1]/(total - 1)))*2
+AAxaa = ((ani[0]/total) * (ani[2]/(total - 1)))*2
+AaxAa = (ani[1]/total) * ((ani[1] - 1)/(total -1)) * 3/4
+Aaxaa = ((ani[1]/total) * (ani[2]/(total-1)) * 1/2)*2
+aaxaa = (ani[2]/total) * (ani[2]/total) * 0
+
+print(AAxAA + AAxAa + AAxaa + AaxAa + Aaxaa)
