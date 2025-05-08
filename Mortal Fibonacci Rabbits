@@ -1,0 +1,19 @@
+k = 96
+n = 1
+m = 18
+#k is months and n is litter size
+#rabbits live for m months
+buns = [[0, 1], [1, 0]]
+
+for i in range(k + 1):
+    buns.append([])
+
+for i in range(1, k + 1):
+    if i < m:
+        buns[i] = [buns[i-1][0]+buns[i-1][1], (buns[i-1][0])*n]
+    else:
+        buns[i] = [buns[i-1][0]+buns[i-1][1]-buns[i-m][1], (buns[i-1][0])*n]
+
+print(buns)
+
+print(buns[k-1][0] + buns[k-1][1])
