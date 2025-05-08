@@ -1,0 +1,16 @@
+string = "19740 16275 18227 19137 16842 16764"
+separate = string.split(' ')
+pairs = []
+for cha in separate:
+    pairs.append(int(cha))
+
+print(pairs)
+
+AAxAA = pairs[0] * 2
+AAxAa = pairs[1] * 2
+AAxaa = pairs[2] * 2
+AaxAa = pairs[3] * 2 * 3/4
+Aaxaa = pairs[4] * 2 * 1/2
+aaxaa = pairs[5] * 2 * 0
+
+print(AAxAA + AAxAa + AAxaa + AaxAa + Aaxaa)
