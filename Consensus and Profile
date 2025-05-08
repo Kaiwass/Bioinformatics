@@ -1,0 +1,94 @@
+thing = """>Rosalind_1
+ATCCAGCT
+>Rosalind_2
+GGGCAACT
+>Rosalind_3
+ATGGATCT
+>Rosalind_4
+AAGCAACC
+>Rosalind_5
+TTGGAACT
+>Rosalind_6
+ATGCCATT
+>Rosalind_7
+ATGGCACT"""
+
+n = thing.count('Rosalind')
+new = thing.split()
+order = []
+
+for i in range(n):
+    order.append([])
+num = -1
+for item in new:
+    if "Rosalind" in item:
+        num += 1
+        order[num].append(item)
+    else:
+        order[num].append(item)
+
+for i in range(len(order)-1, 0, -1):
+    if order[i][-1] == '':
+        order.pop(i)
+names = []
+
+for item in order:
+    names.append(item[0])
+    item.pop(0)
+
+strand = []
+
+for item in order:
+    strand.append("".join(item))
+
+columns = []
+for i in range(len(strand[0])):
+    new_column = ''
+    for dna in strand:
+        new_column += dna[i]
+    columns.append(new_column)
+
+a = []
+sa = []
+for dna in columns:
+    a.append(dna.count('A'))
+    sa.append(str(dna.count('A')))
+
+c = []
+sc = []
+for dna in columns:
+    c.append(dna.count('C'))
+    sc.append(str(dna.count('C')))
+
+g = []
+sg = []
+for dna in columns:
+    g.append(dna.count('G'))
+    sg.append(str(dna.count('G')))
+
+t = []
+st = []
+for dna in columns:
+    t.append(dna.count('T'))
+    st.append(str(dna.count('T')))
+
+average = ''
+numbers = [a, c, g, t]
+new_numbers = []
+letters = ['A', 'C', 'G', 'T']
+
+for i in range(len(numbers[0])):
+    line = []
+    for num in numbers:
+        line.append(num[i])
+    new_numbers.append(line)
+for item in new_numbers:
+    average += letters[item.index(max(item))]
+
+
+print(average)
+
+print('A: ' + (' '.join(sa)))
+print('C: ' + (' '.join(sc)))
+print('G: ' + (' '.join(sg)))
+print('T: ' + (' '.join(st)))
