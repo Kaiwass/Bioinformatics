@@ -1,0 +1,15 @@
+number = 6
+nums = list(range(1, number + 1))
+words = ''
+thing = 1
+for num in nums:
+    words += str(num)
+
+for num in nums:
+    thing = thing * num
+
+print(thing)
+
+import itertools
+for stuff in itertools.permutations(words):
+    print(" ".join(stuff))
