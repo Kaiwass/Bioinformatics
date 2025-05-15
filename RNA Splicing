@@ -1,0 +1,21 @@
+dna = strand[0]
+introns = strand[1:]
+introns.sort(reverse=True)
+for i in range(len(introns)):
+    dna = dna.replace(introns[i], '')
+
+rna = dna.replace('T', 'U')
+
+prot = ''
+start = 0
+for i in range(len(rna)-2):
+    if rna[i:i+3] == 'AUG':
+        start = i
+        break
+
+for y in range(start, len(rna)-1, 3):
+    if translation[rna[y:y+3]] == 'Stop':
+        break
+    prot += translation[rna[y:y+3]]
+
+print(prot)
