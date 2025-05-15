@@ -1,0 +1,32 @@
+string = """>Rosalind_9573
+TTGGTCTTCGCAACATTGAGGCATGGATTCCTGTTGAATATTGCCGACTCGTTTAGCATG
+CTTAACCATTCTTTGACTACACTTTCCGCAAAC
+>Rosalind_8847
+GTAGGGTTGCTCCTTACAGGCGCGCTATCCTTCGGCGAACCAGCCGTAGGATAATCCGTG
+TGGATAAAACATAAGGCAAAAGTA
+>Rosalind_8729
+CGACGAGAATTCGCGCGGGCCCTGCTGTACCCCGCAACCATTCAACGAGCTAGACGCTGG
+AACCTGGAGCGGGTCATTGCCCTCT
+>Rosalind_2933
+TAGCGTAGATTGACGTTGGGTGTCAGCAAGGTCCGGGAAACCGCAGCAAGGTAGCTCGCG
+CTATGATTGAGCGTTTATTATC
+>Rosalind_3471
+GTCGAGGCCCTTAACTTCGGCCTACGAGATCCGAGTGCCAGGTCATCCCTAGGAACGCGG
+CTATCTTCAGAGAGAAGGGCCCACCTATGCTG"""
+
+new = string.split()
+name = []
+strand = []
+for i in range(len(new)):
+    st = ''
+    if '>' in new[i]:
+        name.append(new[i][1:])
+        for y in range(i+1, len(new)):
+            if '>' in new[y]:
+                strand.append(st)
+                break
+            st += new[y]
+            if y == len(new)-1:
+                strand.append(st)
+print(name)
+print(strand)
