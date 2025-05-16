@@ -1,0 +1,37 @@
+from urllib.request import urlopen
+
+sample = """P10646_TFPI_HUMAN
+P24592_IBP6_HUMAN
+Q32LI2
+A5F5B4
+P08318_P100_HCMVA
+P02725_GLP_PIG
+P01044_KNH1_BOVIN
+B5FNU0
+P14210_HGF_HUMAN
+Q00001_RHGA_ASPAC
+P01588_EPO_HUMAN
+P23185
+P22891_PRTZ_HUMAN
+P36912_EBA2_FLAME
+A5GIU0"""
+urls = []
+proteins1 = sample.split('\n')
+for prot in proteins1:
+    urls.append('https://rest.uniprot.org/uniprotkb/'+ prot[0:6] +'.fasta')
+answer = []
+for url in urls:
+    page = urlopen(url)
+    html_bytes = page.read()
+    html = html_bytes.decode("utf-8")
+    amino = "".join(html.split('\n')[1:])
+    indices = []
+    for i in range(len(amino)-3):
+        if amino[i]=='N' and amino[i+1]!='P' and (amino[i+2]=='S' or amino[i+2]=='T') and amino[i+3]!='P':
+            indices.append(str((i+1)))
+    answer.append(indices)
+
+for i in range(len(answer)):
+    if answer[i]!=[]:
+        print(proteins1[i])
+        print(' '.join(answer[i]))
