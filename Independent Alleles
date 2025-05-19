@@ -1,0 +1,9 @@
+def independent_alleles(k, n):
+    org = 2**k
+    prob = 0
+    import math
+    for i in range(n, org + 1):
+        prob += (0.25**i)*(0.75**(org-i))*(math.factorial(org)/(math.factorial(i)*math.factorial(org-i)))
+    return prob
+
+print(independent_alleles(6, 17))
