@@ -1,0 +1,25 @@
+string = """CTCCGAGGCGCCCAGACGCTTCGTGGCTGGCCACCGCTGTTACGTGCGTTTGCCCTCTTTCTCTCGTGGGTCGAAATTCATTGATTGATTGACCGACG"""
+array = """0.102 0.163 0.216 0.277 0.337 0.385 0.435 0.474 0.565 0.643 0.670 0.725 0.796 0.856 0.900"""
+
+array_A = array.split(' ')
+GC_content = []
+for num in array_A:
+    GC_content.append(float(num))
+
+prob = []
+for cont in GC_content:
+    pro = 1
+    for cha in string:
+        if cha == 'A' or cha == 'T':
+            pro = pro*((1-cont)/2)
+        else:
+            pro = pro*(cont/2)
+    prob.append(pro)
+
+ans = []
+import math
+
+for num in prob:
+    ans.append(str(math.log10(num)))
+
+print(' '.join(ans))
