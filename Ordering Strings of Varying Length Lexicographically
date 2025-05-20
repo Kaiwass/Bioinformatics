@@ -1,0 +1,40 @@
+string = """W K Q U J D A L Y O F"""
+number = 3
+new = string.split(' ')
+sort_order = {}
+combi = []
+for i in range(len(new)):
+    sort_order[new[i]] = i
+
+
+import itertools
+
+for i in range(number):
+    for stuff in itertools.product(''.join(new), repeat=i + 1):
+        combi.append(''.join(stuff))
+
+result = []
+
+for i in range(len(new)):
+    result.append([])
+for item in result:
+    for y in range(number):
+        item.append([])
+
+for stuff in combi:
+    result[sort_order[stuff[0]]][len(stuff)-1].append(stuff)
+
+out = []
+for item in result:
+    for key in item[number-2]:
+        for y in range(1, len(key)):
+            if key[0:y] in out:
+                break
+            out.append(key[0:y])
+        out.append(key)
+        for thing in item[number-1]:
+            if key == thing[0:len(key)]:
+                out.append(thing)
+
+for stuff in out:
+    print(stuff)
