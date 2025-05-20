@@ -1,0 +1,66 @@
+string = """ACAGAGGAGGAAGAATTAGTATGGCTTAACGTATATGGTCTCCCTTCGTACGAGCCCACT
+GAGGAACCCACAAGCTCCTAGTCTTCTAGGCTTCACAGCGCGTTTACACCCCGCCACGCG
+TCCTCTGGTAGGTTAATGGAAACATTGAAGTCCGCTCAGAGGCAAGAACGTGTGCGCCGC
+ATACGAGTGACAAGCACCCTTCTGCCAATAATCAACAGTCCACGTAAGCTGGGGAATCCT
+GCCATGGTTGACTCCAACCGAGAAGTAAATAGATCGAATACTGTTTGGCGGTCTACGGAC
+TTCCGCTTGTGAATCGACTCGACTCCATTACTAGAATACTGCTCGAGTGTCATAATCTTA
+GCCGCCGACCTTTTTCCCCTGAGTAATGGTGTTTCGTGTGATCCCGATCTGCTCGATCAG
+GCACACGGCCTCAGCATAATCTCCTGGAGGGGTGATGGTACACCACATTGCGCCTTCGAA
+GCACTACTAGCTAGTAGTGCTTCGAAGGCGCAATGTGGTGTACCATACGAGTTGCCTATT
+AGATTGCAGCTTGAGTCATGAAGTGCACTGTGCAACTCCAGTGCAACTGAACCCAGTTTG
+GGCTATGAGAGACTCCGGCCGTCATCTATCGGACTCACTCCAGCAGCGTTCTTCACCATC
+AGCAGGTGGGGGTAGATATCGGGAAAAATAACAACATCTATCTAATATTGACCAACCCTT
+CCTGTCCACGTAGACCTCTGCTTCACGAAGGCCCTAGGTACTATCTGACCCCAATGAACT
+GTGCATATCCAGTCAATCTTGAGAAAGTTCTCGTCGTTTCGGTGTTGCAGTTGCTGTTAA
+CATGCTTAGGCTGGTCGGCTCGGCAGAACCGCATCTCACGTCGACGTCACGGCGGATACT
+TTTTTTTAAGAGCCCCGACCCACCGTGCACGTGTTAAGAGCCAACTTTCCTTTTCCGTAA
+GTGGCATCCTAATAAAATTC"""
+
+new = string.split('\n')
+adn = ''.join(new)
+arn1 = ''
+arn2 = adn.replace('T', 'U')
+
+tran = {'A': 'U', 'T': 'A', 'G': 'C', 'C': 'G'}
+
+keys = {'UUU':'F',  'CUU':'L',      'AUU':'I',      'GUU':'V',
+'UUC':'F',      'CUC':'L',      'AUC':'I',      'GUC':'V',
+'UUA':'L',      'CUA':'L',      'AUA':'I',      'GUA':'V',
+'UUG':'L',      'CUG':'L',      'AUG':'M',      'GUG':'V',
+'UCU':'S',      'CCU':'P',      'ACU':'T',      'GCU':'A',
+'UCC':'S',      'CCC':'P',      'ACC':'T',      'GCC':'A',
+'UCA':'S',      'CCA':'P',      'ACA':'T',      'GCA':'A',
+'UCG':'S',      'CCG':'P',      'ACG':'T',      'GCG':'A',
+'UAU':'Y',      'CAU':'H',      'AAU':'N',      'GAU':'D',
+'UAC':'Y',      'CAC':'H',      'AAC':'N',      'GAC':'D',
+'UAA':'Stop',   'CAA':'Q',      'AAA':'K',      'GAA':'E',
+'UAG':'Stop',   'CAG':'Q',      'AAG':'K',      'GAG':'E',
+'UGU':'C',      'CGU':'R',      'AGU':'S',      'GGU':'G',
+'UGC':'C',      'CGC':'R',      'AGC':'S',      'GGC':'G',
+'UGA':'Stop',   'CGA':'R',      'AGA':'R',      'GGA':'G',
+'UGG':'W',      'CGG':'R',      'AGG':'R',      'GGG':'G' }
+
+for cha in adn[::-1]:
+    arn1 += tran[cha]
+proteins = []
+
+for y in range(len(arn1)):
+    if arn1[y:y+3] == 'AUG':
+        prot = ''
+        for i in range(y, len(arn1), 3):
+            if keys[arn1[i:i+3]] == 'Stop':
+                proteins.append(prot)
+                break
+            prot += keys[arn1[i:i+3]]
+        
+
+for y in range(len(arn2)):
+    if arn2[y:y+3] == 'AUG':
+        prot = ''
+        for i in range(y, len(arn2), 3):
+            if keys[arn2[i:i+3]] == 'Stop':
+                proteins.append(prot)
+                break
+            prot += keys[arn2[i:i+3]]
+for thing in set(proteins):
+    print(thing)
