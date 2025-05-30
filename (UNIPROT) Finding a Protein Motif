@@ -1,3 +1,5 @@
+#Protein Motif: [XY] --> "either X or Y", {X} --> "any amino acid except X."
+#N-glycosylation motif --> N{P}[ST]{P}.
 from urllib.request import urlopen
 
 sample = """P10646_TFPI_HUMAN
